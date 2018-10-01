@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="wrapper">
+      <section *ngFor="let movies of moviesList;let i = index;" (click)="openReview(movies.imageurl,movies._id)">
+          <img class="img-responsive" [src]="movies.imageurl" >
+       </section>
+  </div>
+</ion-content>

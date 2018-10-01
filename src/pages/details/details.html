@@ -1,0 +1,94 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{film.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + film.imageurl + ')'">
+  </div>
+
+  <div class="item-detail" padding>
+    <h2>{{film.name}}</h2>
+    <p>{{film.detail}}</p>
+    <p></p>
+
+    <ion-row center>
+      <ion-col col-auto>
+        <button ion-button icon-start (click)="launchDialer(film.mobile)">
+          <ion-icon name='ios-call'></ion-icon>
+          Call
+        </button>
+      </ion-col>
+      <ion-col col-auto>
+        <button ion-button outline icon-start (click)="navigateLocation()">
+          <ion-icon name='ios-pin-outline' is-active="false"></ion-icon>
+          Location
+        </button>
+      </ion-col>
+      <ion-col col-auto>
+        <button ion-button icon-start>
+          <ion-icon name='ios-globe'></ion-icon>
+          Web
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-item text-wrap>
+      <ion-icon name='ios-pin-outline' item-start></ion-icon>
+      <p>{{film.addres}}</p>
+
+    </ion-item>
+    <ion-item>
+      <ion-icon name='ios-call-outline' item-start></ion-icon>
+
+      <p>{{film.phone}}</p>
+
+    </ion-item>
+    <h3 text-center>About</h3>
+    <ion-grid>
+      <ion-row *ngFor="let synop of film.synopsis">
+        <ion-col col-12>
+          <ul>
+            <li><strong>{{synop.para}}</strong></li>
+          </ul>
+        </ion-col>
+      </ion-row>
+      <hr style="width: 60%;border: 1px dotted black;">
+    </ion-grid>
+    
+      
+   
+
+    <ion-scroll scrollX="true" direction="x" style="white-space: nowrap; height:105px">
+      <ion-col col-3 style="display: inline-block;" *ngFor="let team of film.castAndCrew">
+        <div style="text-align: center">
+          <img style="display: block;margin: 0 auto;" [src]="team.imageUrl" style="border-radius: 10%;" alt=""
+            #imageToView (click)="onClick(imageToView)">
+          <!-- <p>{{team.name}}</p>-->
+        </div>
+      </ion-col>
+    </ion-scroll>
+
+    <h3 text-center>Review</h3>
+    <ion-grid>
+      <ion-row *ngFor="let review of film.reviews">
+        <ion-col col-12>
+          <p>{{review.message}}</p>
+        </ion-col>
+        <ion-row>
+          <ion-col col-12>
+            <ion-icon name="star" *ngFor="let star of getRattingArray(review.rating)"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-row>
+      <hr style="width: 60%;border: 1px dotted white;">
+    </ion-grid>
+
+
+  </div>
+
+</ion-content>
